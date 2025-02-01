@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ColorChange : MonoBehaviour
 {
-    public Color newColor = Color.red;
+    public Color newColor = Color.cyan;
 
 
     void OnCollisionEnter(Collision collision)
