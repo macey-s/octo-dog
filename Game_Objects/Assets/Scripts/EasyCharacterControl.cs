@@ -1,11 +1,16 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class EasyCharacterControl : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float jumpForce = 8f;
+    public float gravity = -9.81f;
+    
+    
     private CharacterController controller;
+    private Vector3 velocity;
     private Transform thisTransform;
-    private Vector3 movementVector = Vector3.zero;
     
     private void Start()
     {
@@ -17,21 +22,45 @@ public class EasyCharacterControl : MonoBehaviour
     private void Update()
     {
         MoveCharacter();
+        ApplyGravity();
         KeepCharacterOnXAxis();
     }
 
 
     private void MoveCharacter()
     {
-        movementVector.x = Input.GetAxis("Horizontal");
-        movementVector *= (moveSpeed * Time.deltaTime);
-        controller.Move(movementVector);
+        // Horizontal movement //
+        var moveInput = Input.GetAxis("Horizontal");
+        var move = new Vector3(moveInput, 0f, 0f) * (moveSpeed * Time.deltaTime);
+        controller.Move(move);
+        
+        // Jumping movement //
+        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+        }
     }
-
+    
+    private void ApplyGravity()
+    {
+        // Apply gravity when not grounded //
+        if (!controller.isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+        else
+        {
+            // Reset velocity when grounded //
+            velocity.y = 0f; 
+        }
+        
+        // Apply the velocity to the controller //
+        controller.Move(velocity * Time.deltaTime);
+    }
 
     private void KeepCharacterOnXAxis()
     {
-        // Use cached transform reference and optimize vector creation //
+        // Keep character on the same spot in z axis //
         var currentPosition = thisTransform.position;
         currentPosition.z = 0f;
         thisTransform.position = currentPosition;
