@@ -25,22 +25,19 @@ public class CharacterAnimationController : MonoBehaviour
         }
         else
         {
-            {
-                animator.SetTrigger("Idle");
-            }
+            animator.SetTrigger("Idle");
+        }
 
-            // Handle Jumping //
-            if (Input.GetButtonDown("Jump"));
-            {
-                animator.SetTrigger("Jump");
-            }
+        // Handle Jumping //
+        if (Input.GetButtonDown("Jump"));
+        {
+            animator.SetTrigger("Jump");
+        }
             
-            // Handle wall jumping //
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                animator.SetTrigger("WallJump");
-            }
-            
+        // Handle wall jumping //
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            animator.SetTrigger("WallJump");
         }
     }
 }
