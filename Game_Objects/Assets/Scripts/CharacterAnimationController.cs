@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CharacterAnimationController : MonoBehaviour
 {
+    private static readonly int Jump = Animator.StringToHash("Jump");
     private Animator animator;
 
 
@@ -33,7 +34,7 @@ public class CharacterAnimationController : MonoBehaviour
         {
             animator.SetTrigger("Jump");
         }
-            
+        
         // Handle wall jumping //
         if (Input.GetKeyDown(KeyCode.W))
         {
