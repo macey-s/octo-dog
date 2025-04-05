@@ -4,7 +4,7 @@ using UnityEngine;
 public class EasyCharacterControl : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 8f;
+    public float jumpForce = 3f;
     public float gravity = -9.81f;
 
 
