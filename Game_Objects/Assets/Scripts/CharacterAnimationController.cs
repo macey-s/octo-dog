@@ -1,38 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAnimationController : MonoBehaviour
 {
-    private static readonly int Jump = Animator.StringToHash("Jump");
     private Animator animator;
-
-
-    private void Start()
+    
+    // Start is called before the first frame update //
+    void Start()
     {
-        // Cache the Animator component attached to CharacterArt //
         animator = GetComponent<Animator>();
     }
-
-    private void Update()
+    
+    // Update is called once per frame //
+    void Update()
     {
         HandleAnimations();
     }
     
     private void HandleAnimations()
     {
-        // Handle running and idling //
-        if (Input.GetAxis("Horizontal") != 0)
+        // Triggers the jump anim //
+        if (Input.GetButtonDown("Jump"))
+        {
+            animator.SetTrigger("Jump");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+        
+        // Trigger hit anim //
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            animator.SetTrigger("Hit");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+            
+        // Triggers fall anim //
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            animator.SetTrigger("Fall");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+            
+        // Handle running anim //
+        if (Input.GetButton("Horizontal"))
         {
             animator.SetTrigger("Run");
         }
         else
         {
             animator.SetTrigger("Idle");
-        }
-
-        // Handle Jumping //
-        if (Input.GetButtonDown("Jump"));
-        {
-            animator.SetTrigger("Jump");
         }
         
         // Handle wall jumping //
