@@ -5,8 +5,7 @@ using TMPro;
 using System.Globalization;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-
-public class SimpleTextMeshProBehaviour : MonoBehaviour
+public class SimpleTextMeshProBehaviour1 : MonoBehaviour
 {
     private TextMeshProUGUI textObj;
     public SimpleIntData dataObj;
