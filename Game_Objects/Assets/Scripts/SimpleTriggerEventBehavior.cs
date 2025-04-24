@@ -7,7 +7,7 @@ public class SimpleTriggerEventBehaviour : MonoBehaviour
 {
     public UnityEvent triggerEvent;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // Trigger the event and test with debug message //
         if (other.gameObject.tag == "Player")
